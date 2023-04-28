@@ -12,7 +12,16 @@ const AddToCart = ({ price, quantity }: addToCartProps) => {
   const [selectedQuantity, setSelectedQuantity] = useState(0);
 
   const setQuantity = (quantity: number) => {
-    setSelectedQuantity(quantity);
+    if (quantity >= 0) setSelectedQuantity(quantity);
+  };
+
+  const handleQuantityInput = (e: any) => {
+    const value = parseInt(e.target.value);
+    if (!Number.isNaN(value)) {
+      setQuantity(value);
+    } else {
+      setQuantity(0);
+    }
   };
 
   return (
@@ -21,15 +30,23 @@ const AddToCart = ({ price, quantity }: addToCartProps) => {
         ${price} {quantity > 1 && ` ($${price * selectedQuantity})`}
       </Typography>
       <Box my={2} display="flex" justifyContent="space-between">
-        <IconButton>
+        <IconButton onClick={() => setQuantity(selectedQuantity - 1)}>
           <RemoveIcon />
         </IconButton>
-        <TextField />
-        <IconButton aria-label="delete">
+        <TextField
+          id="standard-number"
+          type="number"
+          value={selectedQuantity.toString()}
+          onChange={handleQuantityInput}
+        />
+        <IconButton
+          aria-label="delete"
+          onClick={() => setQuantity(selectedQuantity + 1)}
+        >
           <AddIcon />
         </IconButton>
       </Box>
-      <Button fullWidth variant="contained">
+      <Button sx={{ paddingY: 1.5 }} fullWidth variant="contained">
         Add to cart
       </Button>
     </Box>

@@ -37,6 +37,7 @@ const AddToCart = ({ price, quantity }: addToCartProps) => {
           <RemoveIcon />
         </IconButton>
         <TextField
+          error={selectedQuantity > quantity}
           id="standard-number"
           type="number"
           value={selectedQuantity.toString()}
@@ -49,6 +50,10 @@ const AddToCart = ({ price, quantity }: addToCartProps) => {
           <AddIcon />
         </IconButton>
       </Box>
+      {selectedQuantity > quantity && (
+        <Typography color="error">not enough stock</Typography>
+      )}
+      <Typography>stock: {quantity}</Typography>
       <Button sx={{ paddingY: 1.5 }} fullWidth variant="contained">
         Buy now
       </Button>

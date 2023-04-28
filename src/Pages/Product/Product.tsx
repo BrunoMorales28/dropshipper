@@ -7,17 +7,17 @@ import AddToCart from "../../Components/AddToCart";
 const Product = () => {
   return (
     <Container>
-      <Typography textAlign="left" my={3} variant="h1">
+      <Typography my={3} variant="h1">
         {productItem.name}
       </Typography>
       <ImageScroller imageList={productItem.imgs} />
       <Divider sx={{ marginY: 3 }} />
       <AddToCart price={productItem.price} quantity={productItem.stock} />
       <Divider sx={{ marginY: 3 }} />
-      <Typography textAlign="left" my={3} variant="h2">
+      <Typography my={3} variant="h2">
         Product description
       </Typography>
-      <Typography textAlign="left" my={3} px={3}>
+      <Typography my={3} px={3}>
         {productItem.description}
       </Typography>
     </Container>

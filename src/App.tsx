@@ -6,6 +6,7 @@ import Product from "./Pages/Product";
 import { ThemeProvider } from "@mui/material/styles";
 import MaterialTheme from "./MaterialTheme";
 import Footer from "./Components/Footer";
+import Checkout from "./Pages/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/product",
     element: <Product />,
+  },
+  {
+    path: "/checkout",
+    element: <Checkout />,
   },
 ]);
 

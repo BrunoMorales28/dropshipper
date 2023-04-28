@@ -7,7 +7,9 @@ import AddToCart from "../../Components/AddToCart";
 const Product = () => {
   return (
     <Container>
-      <Typography variant="h1">{productItem.name}</Typography>
+      <Typography textAlign="left" my={3} variant="h1">
+        {productItem.name}
+      </Typography>
       <ImageScroller imageList={productItem.imgs} />
       <AddToCart price={productItem.price} quantity={productItem.stock} />
     </Container>

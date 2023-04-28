@@ -1,4 +1,10 @@
-import { Box, Button, ImageList, ImageListItem } from "@mui/material";
+import {
+  Box,
+  Button,
+  ImageList,
+  ImageListItem,
+  Typography,
+} from "@mui/material";
 import productItem from "../../mock/product";
 import { useState } from "react";
 
@@ -25,6 +31,7 @@ const ImageScroller = ({ imageList }: { imageList: string[] }) => {
           alt="product"
         />
       </Box>
+      <Typography textAlign="left">Tap image to zoom in</Typography>
       <ImageList cols={3} gap={4}>
         {productItem.imgs.map((imageUrl, i) => (
           <ImageListItem key={imageUrl + i}>

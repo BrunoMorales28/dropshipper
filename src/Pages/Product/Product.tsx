@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Container, Divider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import productItem from "../../mock/product";
 import ImageScroller from "../../Components/ImageScroller";
@@ -11,7 +11,15 @@ const Product = () => {
         {productItem.name}
       </Typography>
       <ImageScroller imageList={productItem.imgs} />
+      <Divider sx={{ marginY: 3 }} />
       <AddToCart price={productItem.price} quantity={productItem.stock} />
+      <Divider sx={{ marginY: 3 }} />
+      <Typography textAlign="left" my={3} variant="h2">
+        Product description
+      </Typography>
+      <Typography textAlign="left" my={3} px={3}>
+        {productItem.description}
+      </Typography>
     </Container>
   );
 };

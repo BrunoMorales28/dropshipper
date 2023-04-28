@@ -6,5 +6,9 @@ export default createTheme({
       fontSize: 32,
       fontWeight: "bold",
     },
+    h2: {
+      fontSize: 28,
+      fontWeight: "bold",
+    },
   },
 });

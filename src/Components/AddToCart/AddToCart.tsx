@@ -11,8 +11,8 @@ interface addToCartProps {
 const AddToCart = ({ price, quantity }: addToCartProps) => {
   const [selectedQuantity, setSelectedQuantity] = useState(0);
 
-  const setQuantity = (quantity: number) => {
-    if (quantity >= 0) setSelectedQuantity(quantity);
+  const setQuantity = (qty: number) => {
+    if (qty >= 0) setSelectedQuantity(qty);
   };
 
   const handleQuantityInput = (e: any) => {
@@ -26,9 +26,12 @@ const AddToCart = ({ price, quantity }: addToCartProps) => {
 
   return (
     <Box component="section">
-      <Typography>
-        ${price} {quantity > 1 && ` ($${price * selectedQuantity})`}
-      </Typography>
+      <Box display="flex" justifyContent="space-between">
+        <Typography>${price}</Typography>
+        <Typography>
+          {selectedQuantity >= 1 && `($${price * selectedQuantity})`}
+        </Typography>
+      </Box>
       <Box my={2} display="flex" justifyContent="space-between">
         <IconButton onClick={() => setQuantity(selectedQuantity - 1)}>
           <RemoveIcon />
@@ -47,7 +50,7 @@ const AddToCart = ({ price, quantity }: addToCartProps) => {
         </IconButton>
       </Box>
       <Button sx={{ paddingY: 1.5 }} fullWidth variant="contained">
-        Add to cart
+        Buy now
       </Button>
     </Box>
   );

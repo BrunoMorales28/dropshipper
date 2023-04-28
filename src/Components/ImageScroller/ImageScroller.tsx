@@ -31,8 +31,16 @@ const ImageScroller = ({ imageList }: { imageList: string[] }) => {
           alt="product"
         />
       </Box>
-      <Typography textAlign="left">Tap image to zoom in</Typography>
-      <ImageList cols={3} gap={4}>
+      <Typography mt={2} textAlign="left">
+        Tap image to zoom in
+      </Typography>
+      <ImageList
+        sx={{
+          margin: 0,
+        }}
+        cols={3}
+        gap={4}
+      >
         {productItem.imgs.map((imageUrl, i) => (
           <ImageListItem key={imageUrl + i}>
             <Button

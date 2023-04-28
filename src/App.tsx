@@ -4,6 +4,8 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Product from "./Pages/Product";
+import { ThemeProvider } from "@mui/material/styles";
+import MaterialTheme from "./MaterialTheme";
 
 const router = createBrowserRouter([
   {
@@ -19,13 +21,15 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="App">
-      <Header />
-      <header
-        className="Ap
+      <ThemeProvider theme={MaterialTheme}>
+        <Header />
+        <header
+          className="Ap
       p-header"
-      >
-        <RouterProvider router={router} />
-      </header>
+        >
+          <RouterProvider router={router} />
+        </header>
+      </ThemeProvider>
     </div>
   );
 }

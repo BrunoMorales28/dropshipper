@@ -1,5 +1,5 @@
 import { Box, Button, ImageList, ImageListItem } from "@mui/material";
-import productItem from "../../mock/product";
+import productItem from "../../mock/product.js";
 import { useState } from "react";
 
 const ImageScroller = ({ imageList }: { imageList: string[] }) => {

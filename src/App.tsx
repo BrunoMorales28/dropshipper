@@ -25,7 +25,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <main className="App">
+    <main>
       <ThemeProvider theme={MaterialTheme}>
         <Header />
         <RouterProvider router={router} />

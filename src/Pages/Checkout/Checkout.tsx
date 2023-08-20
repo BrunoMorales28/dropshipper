@@ -25,9 +25,19 @@ const Checkout = () => {
     triggerBillingValidation.current();
     triggerShippingValidation.current();
 
-    console.log("submitting");
-    console.log("billingFormData", billingFormData);
-    console.log("shippingFormData", shippingFormData);
+    if (isBillingFormValid.current) {
+      if (isCheckboxTicked) {
+        console.log("submitting checked");
+        console.log("billingFormData", billingFormData.current);
+        console.log("shippingFormData", billingFormData.current);
+      } else {
+        if (isShippingFormValid.current) {
+          console.log("submitting unchecked");
+          console.log("billingFormData", billingFormData.current);
+          console.log("shippingFormData", shippingFormData.current);
+        }
+      }
+    }
   };
 
   return (

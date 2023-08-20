@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Typography, TextField } from "@mui/material";
@@ -36,14 +36,21 @@ const DetailsForm = ({ formData, triggerValidation, isFormValid }: { formData: R
   const {
     register,
     trigger,
-    watch,
+    getValues,
     formState: { errors, isValid },
   } = useForm<detailsSchema>({ defaultValues: formData.current, resolver: yupResolver(detailsYupSchema) });
-  formData.current = watch();
+
+  const saveValues = useCallback(
+    (name: detailSchema) => {
+      trigger(name);
+      formData.current = getValues();
+    },
+    [formData, getValues, trigger]
+  );
 
   const DetailField = ({ name }: { name: detailSchema }) => (
     <Box my={2}>
-      <TextField label={detailLabels[name]} inputProps={{ ...register(name) }} />
+      <TextField onBlur={() => saveValues(name)} label={detailLabels[name]} inputProps={{ ...register(name) }} />
       {errors[name]?.message && <Typography color={"error"}>{errors[name]?.message}</Typography>}
     </Box>
   );

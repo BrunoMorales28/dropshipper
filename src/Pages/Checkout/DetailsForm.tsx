@@ -24,7 +24,7 @@ const detailLabels = {
 
 type detailSchema = "email" | "firstName" | "lastName" | "phone" | "address";
 
-type detailsSchema = {
+export type detailsSchema = {
   email: string;
   firstName: string;
   lastName: string;
@@ -32,13 +32,14 @@ type detailsSchema = {
   address: string;
 };
 
-const DetailsForm = ({ setFormData, triggerValidation }: { setFormData: Function; triggerValidation: React.MutableRefObject<() => void> }) => {
+const DetailsForm = ({ formData, triggerValidation, isFormValid }: { formData: React.MutableRefObject<detailsSchema>; triggerValidation: React.MutableRefObject<() => void>; isFormValid: React.MutableRefObject<boolean> }) => {
   const {
     register,
     trigger,
-    getValues,
+    watch,
     formState: { errors, isValid },
-  } = useForm<detailsSchema>({ resolver: yupResolver(detailsYupSchema) });
+  } = useForm<detailsSchema>({ defaultValues: formData.current, resolver: yupResolver(detailsYupSchema) });
+  formData.current = watch();
 
   const DetailField = ({ name }: { name: detailSchema }) => (
     <Box my={2}>
@@ -48,8 +49,8 @@ const DetailsForm = ({ setFormData, triggerValidation }: { setFormData: Function
   );
 
   useEffect(() => {
-    setFormData({ data: getValues(), isValid });
-  }, [setFormData, getValues, isValid]);
+    isFormValid.current = isValid;
+  }, [isFormValid, isValid]);
   useEffect(() => {
     triggerValidation.current = trigger;
   }, [triggerValidation, trigger]);

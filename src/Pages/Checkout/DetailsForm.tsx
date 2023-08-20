@@ -32,14 +32,13 @@ type detailsSchema = {
   address: string;
 };
 
-const DetailsForm = ({ setFormData, setValidationTrigger }: { setFormData: Function; setValidationTrigger: Function }) => {
+const DetailsForm = ({ setFormData, triggerValidation }: { setFormData: Function; triggerValidation: React.MutableRefObject<() => void> }) => {
   const {
     register,
     trigger,
-    watch,
+    getValues,
     formState: { errors, isValid },
   } = useForm<detailsSchema>({ resolver: yupResolver(detailsYupSchema) });
-  const formData = watch();
 
   const DetailField = ({ name }: { name: detailSchema }) => (
     <Box my={2}>
@@ -49,16 +48,16 @@ const DetailsForm = ({ setFormData, setValidationTrigger }: { setFormData: Funct
   );
 
   useEffect(() => {
-    setFormData({ data: formData, isValid });
-  }, [formData, isValid, setFormData]);
+    setFormData({ data: getValues(), isValid });
+  }, [setFormData, getValues, isValid]);
   useEffect(() => {
-    setValidationTrigger(trigger);
-  }, [setValidationTrigger, trigger]);
+    triggerValidation.current = trigger;
+  }, [triggerValidation, trigger]);
 
   return (
     <form>
       {details.map((detailName) => (
-        <DetailField name={detailName as detailSchema} />
+        <DetailField key={detailName} name={detailName as detailSchema} />
       ))}
     </form>
   );
